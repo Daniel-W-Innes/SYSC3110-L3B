@@ -23,7 +23,7 @@ public class TeachingAssistant implements ProfListener {
     }
 
     @Override
-    public void update() {
+    public void update(ProfEvent profEvent) {
 
     }
 }

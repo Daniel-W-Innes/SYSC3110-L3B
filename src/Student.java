@@ -23,7 +23,7 @@ public class Student implements ProfListener{
     }
 
     @Override
-    public void update() {
+    public void update(ProfEvent profEvent) {
 
     }
 }
