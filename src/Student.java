@@ -12,24 +12,24 @@ public class Student implements ProfListener{
         return this.name;
     }
 
-    private void study(Date date) {
+    private void study(Date date, String profName) {
         this.midterm = date;
-        System.out.println(name + " : Doh! I have to study hard for my midterm on " + this.midterm);
+        System.out.println(name + " : Doh! I have to study hard for my midterm for " + profName + " on " + this.midterm);
     }
 
-    private void party(Date date) {
+    private void party(Date date, String profName) {
         this.midterm = date;
-        System.out.println(name + " : Alright! I get to party since my midterm isn't until " + this.midterm);
+        System.out.println(name + " : Alright! I get to party since my midterm for " + profName + " isn't until " + this.midterm);
     }
 
     @Override
     public void update(ProfEvent profEvent) {
         switch (profEvent.getEventType()) {
             case NEW_MIDTERM:
-                study(profEvent.getDate());
+                study(profEvent.getDate(), ((Prof) profEvent.getSource()).getName());
                 break;
             case POSTPONED_MIDTERM:
-                party(profEvent.getDate());
+                party(profEvent.getDate(), ((Prof) profEvent.getSource()).getName());
                 break;
         }
     }

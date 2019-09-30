@@ -16,7 +16,7 @@ public class Prof {
         return this.midtermDate;
     }
 
-    public String getName() {
+    String getName() {
         return this.name;
     }
 
