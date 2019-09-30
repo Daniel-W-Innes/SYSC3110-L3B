@@ -1,15 +1,11 @@
 import java.util.Date;
 
 public class TeachingAssistant implements ProfListener {
-    private String name;
+    private final String name;
     private Date midterm;
 
-    TeachingAssistant(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return this.name;
+    TeachingAssistant() {
+        this.name = "Michael";
     }
 
     private void proctor(Date date) {

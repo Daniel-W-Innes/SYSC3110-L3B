@@ -1,15 +1,11 @@
 import java.util.Date;
 
 public class Student implements ProfListener{
-    private String name;
+    private final String name;
     private Date midterm;
 
     Student(String name) {
         this.name = name;
-    }
-
-    public String getName() {
-        return this.name;
     }
 
     private void study(Date date, String profName) {

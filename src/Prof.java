@@ -3,17 +3,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Prof {
-    private String name;
-    private Date midtermDate;
+    private final String name;
     private Set<ProfListener> profListeners;
 
-    private Prof(String name) {
-        this.name = name;
+    private Prof() {
+        this.name = "Babak";
         profListeners = new HashSet<>();
-    }
-
-    public Date getMidterm() {
-        return this.midtermDate;
     }
 
     String getName() {
@@ -21,7 +16,6 @@ public class Prof {
     }
 
     private void setMidterm(Date date) {
-        this.midtermDate = date;
         ProfEvent profEvent = new ProfEvent(this, date, EventType.NEW_MIDTERM);
         for (ProfListener profListener : profListeners) {
             profListener.update(profEvent);
@@ -29,7 +23,6 @@ public class Prof {
     }
 
     private void postponeMidterm(Date date) {
-        this.midtermDate = date;
         ProfEvent profEvent = new ProfEvent(this, date, EventType.POSTPONED_MIDTERM);
         for (ProfListener profListener : profListeners) {
             profListener.update(profEvent);
@@ -38,10 +31,10 @@ public class Prof {
 
     public static void main(String[] args) {
 
-        Prof p = new Prof("Babak");
+        Prof p = new Prof();
         Student s = new Student("Homer");
         Student s2 = new Student("Bart");
-        TeachingAssistant ta = new TeachingAssistant("Michael");
+        TeachingAssistant ta = new TeachingAssistant();
 
 
         p.addProfListeners(s);
@@ -54,9 +47,11 @@ public class Prof {
         p.postponeMidterm(new Date(midterm.getTime() + 1000000000));
     }
 
-    public void removeProfListener(ProfListener profListener) {
-        profListeners.remove(profListener);
-    }
+// --Commented out by Inspection START (2019-09-30 10:35):
+//    public void removeProfListener(ProfListener profListener) {
+//        profListeners.remove(profListener);
+//    }
+// --Commented out by Inspection STOP (2019-09-30 10:35)
 
     private void addProfListeners(ProfListener profListener) {
         profListeners.add(profListener);

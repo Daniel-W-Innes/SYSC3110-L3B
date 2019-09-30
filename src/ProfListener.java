@@ -1,3 +1,3 @@
-public interface ProfListener {
+interface ProfListener {
     void update(ProfEvent profEvent);
 }
