@@ -1,15 +1,14 @@
-import java.util.*;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Prof {
     private String name;
     private Date midtermDate;
     private Set<ProfListener> profListeners;
-    private List<Student> students;
-    private TeachingAssistant ta;
 
     private Prof(String name) {
         this.name = name;
-        students = new ArrayList<>();
         profListeners = new HashSet<>();
     }
 
@@ -23,28 +22,19 @@ public class Prof {
 
     private void setMidterm(Date date) {
         this.midtermDate = date;
-        for(Student s: this.students){
-            s.study(date);
+        ProfEvent profEvent = new ProfEvent(this, date, EventType.NEW_MIDTERM);
+        for (ProfListener profListener : profListeners) {
+            profListener.update(profEvent);
         }
-        ta.proctor(date);
     }
 
     private void postponeMidterm(Date date) {
         this.midtermDate = date;
-        for(Student s: this.students){
-            s.party(date);
+        ProfEvent profEvent = new ProfEvent(this, date, EventType.POSTPONED_MIDTERM);
+        for (ProfListener profListener : profListeners) {
+            profListener.update(profEvent);
         }
-        ta.postpone(date);
     }
-
-    private void setTA(TeachingAssistant theTA) {
-        this.ta = theTA;
-    }
-
-    private void addStudent(Student s) {
-        this.students.add(s);
-    }
-
 
     public static void main(String[] args) {
 
@@ -54,9 +44,9 @@ public class Prof {
         TeachingAssistant ta = new TeachingAssistant("Michael");
 
 
-        p.addStudent(s);
-        p.addStudent(s2);
-        p.setTA(ta);
+        p.addProfListeners(s);
+        p.addProfListeners(s2);
+        p.addProfListeners(ta);
 
         Date midterm = new Date();
         p.setMidterm(midterm);
@@ -64,11 +54,11 @@ public class Prof {
         p.postponeMidterm(new Date(midterm.getTime() + 1000000000));
     }
 
-    public boolean removeProfListener(ProfListener profListener) {
-        return profListeners.remove(profListener);
+    public void removeProfListener(ProfListener profListener) {
+        profListeners.remove(profListener);
     }
 
-    public boolean addProfListeners(ProfListener profListener) {
-        return profListeners.add(profListener);
+    private void addProfListeners(ProfListener profListener) {
+        profListeners.add(profListener);
     }
 }
