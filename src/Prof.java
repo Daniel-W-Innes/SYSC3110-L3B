@@ -1,8 +1,3 @@
-/** SYSC 2101 - Prof-Student-TA Example
- *
- *
- */
-
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -12,9 +7,9 @@ public class Prof {
     private ArrayList<Student> students;
     private TeachingAssistant ta;
 
-    public Prof(String aName) {
+    private Prof(String aName) {
         this.name = aName;
-        this.students = new ArrayList<Student>();
+        this.students = new ArrayList<>();
     }
 
     public Date getMidterm() {
@@ -25,7 +20,7 @@ public class Prof {
         return this.name;
     }
 
-    public void setMidterm(Date date) {
+    private void setMidterm(Date date) {
         this.midtermDate = date;
         for(Student s: this.students){
             s.study(date);
@@ -33,7 +28,7 @@ public class Prof {
         ta.proctor(date);
     }
 
-    public void postponeMidterm(Date date){
+    private void postponeMidterm(Date date) {
         this.midtermDate = date;
         for(Student s: this.students){
             s.party(date);
@@ -41,11 +36,11 @@ public class Prof {
         ta.postpone(date);
     }
 
-    public void setTA(TeachingAssistant theTA){
+    private void setTA(TeachingAssistant theTA) {
         this.ta = theTA;
     }
 
-    public void addStudent(Student s){
+    private void addStudent(Student s) {
         this.students.add(s);
     }
 
