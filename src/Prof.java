@@ -1,15 +1,16 @@
-import java.util.ArrayList;
-import java.util.Date;
+import java.util.*;
 
 public class Prof {
     private String name;
     private Date midtermDate;
-    private ArrayList<Student> students;
+    private Set<ProfListener> profListeners;
+    private List<Student> students;
     private TeachingAssistant ta;
 
-    private Prof(String aName) {
-        this.name = aName;
-        this.students = new ArrayList<>();
+    private Prof(String name) {
+        this.name = name;
+        students = new ArrayList<>();
+        profListeners = new HashSet<>();
     }
 
     public Date getMidterm() {
@@ -63,4 +64,11 @@ public class Prof {
         p.postponeMidterm(new Date(midterm.getTime() + 1000000000));
     }
 
+    public boolean removeProfListener(ProfListener profListener) {
+        return profListeners.remove(profListener);
+    }
+
+    public boolean addProfListeners(ProfListener profListener) {
+        return profListeners.add(profListener);
+    }
 }
