@@ -5,7 +5,7 @@
 
 import java.util.Date;
 
-public class Student{
+public class Student implements ProfListener{
     private String name;
     private Date midterm;
 
@@ -25,5 +25,10 @@ public class Student{
     public void party(Date date){
         this.midterm = date;
         System.out.println(name + " : Alright! I get to party since my midterm isn't until " + this.midterm);
+    }
+
+    @Override
+    public void update() {
+
     }
 }

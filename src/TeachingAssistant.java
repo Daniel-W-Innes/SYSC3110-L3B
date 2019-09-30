@@ -5,7 +5,7 @@
 
 import java.util.Date;
 
-public class TeachingAssistant {
+public class TeachingAssistant implements ProfListener {
     private String name;
     private Date midterm;
 
@@ -25,5 +25,10 @@ public class TeachingAssistant {
     public void postpone(Date date){
         this.midterm = date;
         System.out.println(name + " : Now the midterm is on " + this.midterm);
+    }
+
+    @Override
+    public void update() {
+
     }
 }
